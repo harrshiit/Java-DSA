@@ -7,11 +7,12 @@ public class SecondMax {
         Arrays.sort(arr);
         int n = arr.length;
         for( int i=n-1-1;i>=0;i--){
-         if(arr[i]!=arr[n-1]) // can also use here i+1;
+            // here now we compare second last element after sorting if it is equal to larges then  traverse next left elemnt to it 
+         if(arr[i]!=arr[n-1]) // can also use here i+1 which is equal to the index of last element 
          return arr[i];
          // here we are comparing the large last largest element with just before it in sorted array 
         }
-        return -1 ;
+        return -1 ; // if not found suppose an array contain the same element 
     }
 
     public static int SecondMaxAvg( int[] arr){
