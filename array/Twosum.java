@@ -20,7 +20,7 @@ public class Twosum {
         HashMap<Integer,Integer>map = new HashMap<>();
         for( int i=0;i<arr.length;i++){
             int complement = target - arr[i];
-            if(map.containsKey(complement)){
+            if(map.containsKey(complement)) // becausse map in key value paur the number is stored in the key place{
                 return new int[] {map.get(complement), i};
             }
             map.put(arr[i], i);
