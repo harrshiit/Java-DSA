@@ -15,12 +15,12 @@ public class Twosum {
     }
     
     public static int [] TwosumAvg( int [] arr, int target ){
-        // time complexicity O(n) and space complexicity O(1) 
+        // time complexicity O(n) and space complexicity O(n) 
         // optimal if we have to return index 
         HashMap<Integer,Integer>map = new HashMap<>();
         for( int i=0;i<arr.length;i++){
             int complement = target - arr[i];
-            if(map.containsKey(complement)){
+            if(map.containsKey(complement)) // becausse map in key value paur the number is stored in the key place{
                 return new int[] {map.get(complement), i};
             }
             map.put(arr[i], i);
