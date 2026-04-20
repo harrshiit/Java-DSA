@@ -11,6 +11,7 @@ public class implementation {
             this.value = value;
         }
       }
+      
 
       public static void display(  Node rootnode ){
         // in order to display as like tree where clearly we can distinguish the root node leftnode and right node 
@@ -27,20 +28,62 @@ public class implementation {
         
       }
 
-      public static void actualpreorderdisplay( Node rootnode ){
-        
-        if(rootnode==null) return  ;
-        System.out.print(rootnode.value+" ");
-        actualpreorderdisplay(rootnode.left);
-        actualpreorderdisplay(rootnode.right);
+      public static void actualPREORDERdisplay( Node rootnode ){
+        // this follows  left  root Right 
+         if(rootnode==null) return  ;
+        System.out.print(rootnode.value+" ");// left
+        actualPREORDERdisplay(rootnode.left);// root 
+        actualPREORDERdisplay(rootnode.right);// right
       }
+
+     // Inorder Traversal 
+      public static void INORDERdisplay(Node rootNode){
+        // left root right 
+        if(rootNode==null) return ;
+        INORDERdisplay(rootNode.left);// left 
+        System.out.println(rootNode.value);// root 
+        INORDERdisplay(rootNode.right);//right 
+
+      }
+
+
+      // PostOrder Traversal 
+      public static void PREORDER(Node root){
+
+
+        // left right and root 
+        if(root==null) return ;
+        PREORDER(root.left);// left
+        PREORDER(root.left); // right 
+        System.out.println(root.value); // root
+         }
+
+         /* the time complexicity for any type of  traversal like preorder postorder  and inorder is 
+         O(n)    n-  is no of nodes 
+         O(2^n) if n is no of levels all because in binary  tree 2^l = n  where l is level and n is no of nodes  */
+
+
+         // Printing all nodes elements of nth level 
+
+         public static void PrintNthLevel( Node root , int level){
+          // here logic is we assume  the top  level be  the level we have  to require 
+          // then we start decreasing the level whole moving down to the subtrees when  that level  becomes  1  
+          // that is therequred level  we print thatlevel  nodes values
+          if(root==null) return ; // suppose a particular  value of node not exist  at level either left right then  it return to the function
+          if(level==1) System.out.println(root.value+" ");
+          PrintNthLevel(root.left, level-1);
+          PrintNthLevel(root.right, level-1); // this recursively find for nth level 
+print nth
+         }
+
+
 
       // to find size of a binary tree can be done using two 
       // first way like we do to display tree nodes 
      static int count=0; // we difine it globally but we have to make it static to access under static method 
       public static int size( Node rootnode){
         if(rootnode==null) return 0;
-        count++;
+        count++;// instead of printing node we increase the count 
         size(rootnode.left);
         size(rootnode.right);
         return  count;
@@ -50,7 +93,7 @@ public class implementation {
       public static int size1( Node rootNode){
         if(rootNode==null) return 0;
         return 1+size1(rootNode.left)+size1(rootNode.right);
-        // left subtree size , right subtree size + root node  
+        // 1(for rootnode ) + size  of left subtree + size of right subtree ;
       }
 
       // find the sum of all nodes 
@@ -83,23 +126,36 @@ public class implementation {
           // using max becuse the one which subtree is deep having greater value of height 
         }
 
+// totalcost
+        // To find the  product of  the nodes of the tree 
+        public static  int product(Node root){
+          if(root==null) return 1 ; // return 1 becuse we have to find the product 
+          return  root.value*product(root.left)*product(root.right);
+        }
 
-      public static void main(String[] args) {
-        Node root = new Node(2);
-        Node a = new Node(4);
-        Node b = new Node(10);
-        Node c = new Node(6);
-        Node d = new Node(5);
-        Node e = new Node(11);
-        root.left =a ;
+        public static Node createTree(){
+          Node root =  new Node(2);
+          Node a  = new Node(3);
+          Node b  = new Node(4);
+          Node c  = new Node(5);
+          Node d  = new Node(6);
+          Node e  = new Node(7);
+         root.left = a;
         root.right = b;
-        a.left = c ;
-        a.right= d;
+
+        a.left = c;
+        a.right = d;
+
         b.right = e;
+          return root ;
+        }
+// total sima  bond is real tail worth  prpdu 
+      public static void main(String[] args) {
+        Node  root = createTree();
         display(root);
         System.out.println();
         System.out.println("the actual preorder arrangement display are ");
-        actualpreorderdisplay(root);
+        actualPREORDERdisplay(root);
         System.out.println();
         System.out.println("The size of the tree is "+size(root));
         System.out.println();
